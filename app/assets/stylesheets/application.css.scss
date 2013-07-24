@@ -1,17 +1,9 @@
 /*
  *= require twitter/bootstrap
  *= require_self
- *= require_tree .
 */
-// $navColor: #d9534f;
 
-// .navbar-inverse {
-//   background-color: $navColor;
-//   .navbar-nav > .active > a {
-//     &:hover {
-//       background: darken($navColor, 30%);
-//     }
-//     background: darken($navColor, 30%);
-//   }
-//   .navbar-nav > li > a { color: #FFF; }
-// }
+body {
+  color: #555;
+  background: #f0f0f0 image-url("bg.gif") repeat -70% 0;
+}
