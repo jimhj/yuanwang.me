@@ -1,0 +1,23 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: wish_list_dev
+  pool: 5
+  username: root
+  password: 0819
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: wish_list_test
+  pool: 5
+  username: root
+  password: 0819
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: wish_list_pro
+  pool: 5
+  username: root
+  password: 0819
