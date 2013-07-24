@@ -10,9 +10,9 @@ gem 'jbuilder', '~> 1.2'
 gem 'slim', '~> 1.3.8'
 gem 'bcrypt-ruby', '3.0.0'
 gem 'settingslogic'
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails',
-                              :branch => '3.0.0'
+gem 'bootstrap-sass', '~> 2.3.2.1'
+gem 'font-awesome-rails', git: "https://github.com/bokmann/font-awesome-rails.git", branch: :master
+
 group :doc do
   gem 'sdoc', require: false
 end

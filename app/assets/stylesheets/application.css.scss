@@ -1,9 +1,15 @@
 /*
- *= require twitter/bootstrap
+ *= require bootstrap
+ *= require flat-ui/css/flat-ui
+ *= require font-awesome
  *= require_self
 */
 
 body {
-  color: #555;
   background: #f0f0f0 image-url("bg.gif") repeat -70% 0;
+}
+
+.navbar {
+  a { text-decoration: none; }
+	li.sign_out > a, li.sign_out > a:hover { color: red; }
 }

@@ -2,15 +2,28 @@
 html
   head
     title WishList
-    = stylesheet_link_tag    "application", media: "all"
+    = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
     .header
       .navbar.navbar-inverse.navbar-static-top
-        a.navbar-brand WishList
-        ul.nav.navbar-nav
-          li.active: a Explore
+        .navbar-inner
+          .pull-left
+            .nav-collapse.collapse
+              a.brand href="#" WishListLogo
+              ul.nav
+                li: a href="#" Home
+                li.active: a href="#" 随便看看
+          .pull-right
+          	ul.nav
+							li: a href="#" 
+								| fresh_fish
+							li: a href="#"
+								span.label 0
+							li.sign_out
+								a href="#"
+									i.icon-power-off
     .main
       = yield
     .footer
