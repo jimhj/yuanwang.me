@@ -13,20 +13,24 @@ html
             .nav-collapse.collapse
               a.brand href="#" WishListLogo
               ul.nav
-                li: a href="#" Home
-                li.active: a href="#" 随便看看
+                li.active: a href="#{root_path}" 随便看看
           .pull-right
             ul.nav
               li: a href="#" 
                 i.icon-edit
-                span.ml-5 Write a Wish            
-              li: a href="#" 
-                | fresh_fish
-              li: a href="#"
-                span.label 0
-              li.sign_out
-                a href="#"
-                  i.icon-power-off
+                span.ml-5 许一个愿望
+              - if false            
+                li: a href="#" 
+                  | fresh_fish
+                li: a href="#"
+                  span.label 0
+                li.sign_out
+                  a href="#"
+                    i.icon-power-off
+              - else
+                li: a href="#" 
+                  i.icon-weibo
+                  span.ml-5 登录
     .main
       = yield
     .footer

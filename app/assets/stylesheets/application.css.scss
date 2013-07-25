@@ -11,6 +11,7 @@
 body {
   background: #f0f0f0 image-url("bg.gif") repeat -70% 0;
 }
+i.icon-weibo { color: #C0392B; }
 
 @each $margin in 5, 10, 15, 20, 25, 30 {
   .ml-#{$margin} { margin-left: #{$margin}px; }
@@ -23,6 +24,26 @@ body {
 
 .navbar {
   a { text-decoration: none; }
-	li.sign_out > a, li.sign_out > a:hover { color: red; }
+	li.sign_out > a, li.sign_out > a:hover { color: #C0392B; }
   margin-bottom: 20px;
+}
+
+.index-home {
+  width: 1024px;
+  a { text-decoration: none; }
+  .palette { padding: 5px 2px; }
+  .random-recommand { margin: 0 auto; }
+  .list .summary { padding-top: 6px; }
+  .list-name { font-size: 40px; text-align: center; }
+  .done-list {
+    width: 46%;
+  }
+  .divider {
+    min-height: 900px;
+    background: #DDD;
+    width: 1px; 
+  }
+  .todo-list {
+    width: 46%;
+  }
 }
