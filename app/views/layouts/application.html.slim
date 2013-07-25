@@ -16,14 +16,17 @@ html
                 li: a href="#" Home
                 li.active: a href="#" 随便看看
           .pull-right
-          	ul.nav
-							li: a href="#" 
-								| fresh_fish
-							li: a href="#"
-								span.label 0
-							li.sign_out
-								a href="#"
-									i.icon-power-off
+            ul.nav
+              li: a href="#" 
+                i.icon-edit
+                span.ml-5 Write a Wish            
+              li: a href="#" 
+                | fresh_fish
+              li: a href="#"
+                span.label 0
+              li.sign_out
+                a href="#"
+                  i.icon-power-off
     .main
       = yield
     .footer

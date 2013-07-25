@@ -1,5 +1,30 @@
-form.form-horizontal
-  .has-error
-    label.control-label * 物品名称
-    .controls
-      input.col-4 type="text" required=true
+.wishes.container
+  .new-wish
+    h1 
+      i.icon-gift
+      span.ml-5 许下一个新的愿望
+    form.form-horizontal
+      .control-group        
+        .controls
+          textarea required=true placeholder="简单的描述一下你的愿望"
+      .control-group        
+        .controls
+          .input-prepend
+            span.add-on: i.icon-shopping-cart
+            input.span6 type="text" placeholder="甚至告诉TA在哪可以买到，输入购买链接"
+      .control-group        
+        .controls
+          a.btn.btn-large.btn-primary
+            i.icon-cloud-upload
+            span.ml-5 上传图片帮助说明你的愿望
+      .control-group        
+        .controls
+          .input-prepend
+            span.add-on: i.icon-time
+            input.span3 type="text" placeholder="在指定时间之前实现"
+
+      .control-group.mt-30 
+        .controls
+          button.btn.btn-info.btn-block.btn-large
+            i.icon-ok
+            span.ml-5 发布我的愿望                 

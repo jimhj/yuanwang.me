@@ -1,0 +1,25 @@
+.wishes .new-wish {
+  h1 { 
+    display: block;
+    margin: 10px 0px 20px 0px;
+    margin-left: 180px;
+  }
+}
+
+.wishes .new-wish form {
+  textarea {
+    width: 470px;
+  }
+  .input-prepend {
+    span.add-on {
+      height: 21px;
+      padding: 8px 10px;
+      border: 2px solid #bdc3c7;
+    }
+
+    input { 
+      border-left: none; 
+      border-radius: 0px 4px 4px 0px; 
+    }
+  }
+}

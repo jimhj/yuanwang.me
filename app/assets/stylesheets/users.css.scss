@@ -1,0 +1,27 @@
+.users {
+  a { text-decoration: none; }
+  .info { font-size: 20px; }
+  .info .detail { margin-left: 20px; }
+
+  .wish-list {
+    ul.nav { margin-bottom: 10px; }
+    ul.nav a { text-decoration: none; }
+    ul.nav li {
+      &.done > a { color:#2ecc71; }
+      &.to_be_done > a { color: #3498db; }
+      // &.starting > a { color: #e67e22; }
+    }
+    ul.nav li.active a { color: #16a085; }
+
+    .wish-items {
+      .palette { padding: 5px 2px; }
+      .item {
+        border-bottom: 1px solid #DDD;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        .wish-status { font-size: 30px; width: 30px; }
+        .wish-content, .wish-info { padding-top: 9px; }
+      }
+    }
+  }
+}
