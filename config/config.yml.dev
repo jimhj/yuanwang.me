@@ -1,0 +1,24 @@
+defaults: &defaults
+  app_name: "愿望清单"
+  weibo_key: 146154564
+  weibo_secret: 6bb9ba83bdbb38ecff074d155a27d6c0
+  qiniu_key: fuJv0PW2x8JV71VZzwBo6VPNe2f5HRFrWpApdEYQ
+  qiniu_token: DSEnyT8JlbVHhoZhE3tdS8DdFZtbRuj45ZXU6kNn
+  qiniu_bucket: wishlist
+  image_host: http://wishlist.qiniudn.com
+
+development:
+  <<: *defaults
+  site_url: "http://127.0.0.1:3000/"
+  weibo_callback_url: "http://www.wakmj.com:3000/auth/weibo/callback"
+
+test:
+  <<: *defaults
+  site_url: "http://127.0.0.1:3000/"
+  weibo_callback_url: "http://www.wakmj.com:3000/auth/weibo/callback"
+  renren_callback_url: "http://www.wakmj.com:3000/auth/renren/callback"
+
+production:
+  <<: *defaults
+  site_url: "http://www.wakmj.com/"
+  weibo_callback_url: "http://www.wakmj.com/auth/weibo/callback"

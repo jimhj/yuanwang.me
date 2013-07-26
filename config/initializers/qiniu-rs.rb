@@ -1,0 +1,1 @@
+Qiniu::RS.establish_connection! access_key: Setting.qiniu_key, secret_key: Setting.qiniu_token

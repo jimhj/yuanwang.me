@@ -19,16 +19,15 @@ html
               li: a href="#" 
                 i.icon-edit
                 span.ml-5 许一个愿望
-              - if false            
-                li: a href="#" 
-                  | fresh_fish
+              - if signed_in?            
+                li: a href="#{user_path(current_user)}"= current_user.name
                 li: a href="#"
                   span.label 0
                 li.sign_out
                   a href="#"
                     i.icon-power-off
               - else
-                li: a href="#" 
+                li: a href="/auth/weibo" 
                   i.icon-weibo
                   span.ml-5 登录
     .main

@@ -12,6 +12,10 @@ gem 'bcrypt-ruby', '3.0.0'
 gem 'settingslogic'
 gem 'bootstrap-sass', '~> 2.3.2.1'
 gem 'font-awesome-rails', git: "https://github.com/bokmann/font-awesome-rails.git", branch: :master
+gem 'omniauth', '~> 1.1.0'
+gem 'omniauth-oauth2', '~> 1.0.2'
+gem 'qiniu-rs'
+gem 'mini_magick', '~> 3.4'
 
 group :doc do
   gem 'sdoc', require: false
