@@ -4,6 +4,7 @@ html
     title WishList
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
+    = yield :head
     = csrf_meta_tags
   body
     .header
@@ -16,7 +17,7 @@ html
                 li.active: a href="#{root_path}" 随便看看
           .pull-right
             ul.nav
-              li: a href="#" 
+              li: a href="#{new_wish_path}" 
                 i.icon-edit
                 span.ml-5 许一个愿望
               - if signed_in?            

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def require_login
     unless signed_in?
       clear_login_state
-      redirect_to sign_in_path, error: "请登录后继续"
+      redirect_to root_path, error: "请登录后继续"
     end
   end  
 

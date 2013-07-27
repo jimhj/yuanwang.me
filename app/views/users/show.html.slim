@@ -1,11 +1,14 @@
+- content_for :head do
+  = stylesheet_link_tag 'users'
+
 .users.container
   .info.clearfix
     .avatar.pull-left
       img src="#{@user.avatar_url(:normal)}"        
     .detail.pull-left
       p
-        a href="#" fresh_fish’s Wish List
-        a.ml-10 href="#": i.icon-weibo
+        a href="#"= @user.name
+        a.ml-10 href="http://weibo.com/u/#{@user.weibo_uid}": i.icon-weibo
       p
         i.icon-gift
         a.ml-10 href="#" 32

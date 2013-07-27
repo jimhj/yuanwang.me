@@ -16,6 +16,7 @@ gem 'omniauth', '~> 1.1.0'
 gem 'omniauth-oauth2', '~> 1.0.2'
 gem 'qiniu-rs'
 gem 'mini_magick', '~> 3.4'
+gem "jquery-fileupload-rails"
 
 group :doc do
   gem 'sdoc', require: false

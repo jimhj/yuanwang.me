@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 20130726132822) do
     t.string   "id",            limit: 8,              null: false
     t.text     "content",                              null: false
     t.string   "photo"
-    t.string   "status",        limit: 80,             null: false
+    t.string   "refer_link"
     t.datetime "deadline"
+    t.string   "status",        limit: 80
     t.string   "achiever_id",   limit: 8
     t.integer  "wishers_count",            default: 0
     t.integer  "user_id"

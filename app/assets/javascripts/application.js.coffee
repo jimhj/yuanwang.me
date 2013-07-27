@@ -3,4 +3,3 @@
 # = require bootstrap
 # = require flat-ui/js/flatui-checkbox
 # = require flat-ui/js/flatui-radio
-# = require_tree .

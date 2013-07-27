@@ -1,27 +1,35 @@
+- content_for :head do
+  = stylesheet_link_tag 'wishes'
+  = javascript_include_tag 'wishes'
+
 .wishes.container
   .new-wish
     h1 
       i.icon-gift
       span.ml-5 许下我的第 一千零一个 愿望
-    form.form-horizontal
+    = form_for @wish, html: { :class => "form-horizontal" } do |f|
       .control-group        
         .controls
-          textarea required=true placeholder="简单的描述一下你的愿望"
+          = f.text_area :content, required: true, placeholder: "描述一下你的愿望"
       .control-group        
         .controls
           .input-prepend
             span.add-on: i.icon-shopping-cart
-            input.span6 type="text" placeholder="甚至告诉TA在哪可以买到，输入购买链接"
-      .control-group        
-        .controls
-          a.btn.btn-large.btn-primary
-            i.icon-cloud-upload
-            span.ml-5 上传图片帮助说明你的愿望
+            = f.text_field :refer_link, :class => "span6", :placeholder => "甚至告诉TA在哪可以买到，输入购买链接"
+      .control-group
+        .controls    
+         .btn.btn-large.btn-primary.fileinput-button type="file"
+            i.icon-picture
+            span.ml-5 上传一张图片
+            input#fileupload type="file" name="upload"
+            span.ml-5.loading.hide
+              i.icon-spinner.icon-spin            
+            = f.hidden_field :photo
       .control-group        
         .controls
           .input-prepend
             span.add-on: i.icon-time
-            input.span3 type="text" placeholder="在指定时间之前实现"
+            = f.text_field :deadline, :class => "span3", :placeholder => "希望在指定时间之前实现"            
 
       .control-group.mt-30 
         .controls
