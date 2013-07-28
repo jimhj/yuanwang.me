@@ -12,45 +12,46 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def color(status)
+    colors = {
+      "PENDING"  => 'default',
+      "LOCKED"   => 'warning',
+      "GRANTED"  => 'success',
+      "FAILED"   => 'important'
+    }
+
+    colors[status.upcase]
+  end
+
+  def icon(status)
+    icons = {
+      "PENDING"  => 'icon-flag-alt',
+      "LOCKED"   => 'icon-flag',
+      "GRANTED"  => 'icon-ok-sign',
+      "FAILED"   => 'icon-remove-sign'
+    }
+
+    icons[status.upcase]
+  end
+
+  def text(status)
+    texts = {
+      "PENDING"  => '等待认领',
+      "LOCKED"   => '已被认领尚未完成',
+      "GRANTED"  => '愿望达成',
+      "FAILED"   => '愿望失败'
+    }
+
+    texts[status.upcase]    
+  end
+
   def wish_status_tag(wish)
-    case wish.status
-    when "PENDING"
-      content_tag 'span', :class => 'label label-block' do
-        sub_tags = []
-        sub_tags << content_tag('i', nil, :class => "icon-flag-alt")
-        sub_tags << content_tag('span', :class => 'ml-5') do
-          "等待认领"
-        end
-        sub_tags.join.html_safe
-      end
-    when "LOCKED"
-      content_tag 'span', :class => 'label label-warning label-block' do
-        sub_tags = []
-        sub_tags << content_tag('i', nil, :class => "icon-flag")
-        sub_tags << content_tag('span', :class => 'ml-5') do
-          "已被认领尚未完成"
-        end
-        sub_tags.join.html_safe
-      end
-    when "GRANTED"
-      content_tag 'span', :class => 'label label-success label-block' do
-        sub_tags = []
-        sub_tags << content_tag('i', nil, :class => "icon-ok-sign")
-        sub_tags << content_tag('span', :class => 'ml-5') do
-          "愿望达成"
-        end
-        sub_tags.join.html_safe
-      end
-    when "FAILED"
-      content_tag 'span', :class => 'label label-important label-block' do
-        sub_tags = []
-        sub_tags << content_tag('i', nil, :class => "icon-remove-sign")
-        sub_tags << content_tag('span', :class => 'ml-5') do
-          "愿望失败"
-        end
-        sub_tags.join.html_safe
-      end                  
-    end      
+    content_tag 'span', :class => "label label-#{color(wish.status)} label-block" do
+      sub_tags = []
+      sub_tags << content_tag('i', nil, :class => "#{icon(wish.status)}")
+      sub_tags << content_tag('span', :class => 'ml-5') { text(wish.status) }
+      sub_tags.join.html_safe
+    end
   end
 
   def grant(wish, opts = {}, &block)

@@ -8,7 +8,7 @@
     .detail.pull-left
       p
         a href="#"= @user.name
-        a.ml-10 href="http://weibo.com/u/#{@user.weibo_uid}": i.icon-weibo
+        a.ml-10 href="http://weibo.com/u/#{@user.weibo_uid}" target="_blank": i.icon-weibo
       p
         i.icon-gift
         a.ml-10 href="#" 32
@@ -34,59 +34,36 @@
           span.ml-5 未认领
                     
     .wish-items
-      - 4.times do
+      - @wishes.each do |wish|
         .item.clearfix
           .wish-status.pull-left
-            a href="#": i.icon-check   
+            a href="#{wish_path(wish)}"
+              - if wish.granted?
+                i.icon-check
+              - else
+                i.icon-check-empty  
           .wish-content.pull-left
-            a.palette.palette-turquoise.ml-10 href="#"
-              | 我想要买一个万代高达seed模型,我想要买一个万代高达seed模型...
+            a.ml-10 href="#{wish_path(wish)}"
+              span.label class="label-#{color(wish.status)}"
+                = wish.content.truncate(40)
           .wish-info.pull-right
-            a.ml-10 href="#"
-              i.icon-shopping-cart
-            a.ml-10 href="#"
-              i.icon-picture            
-            a.ml-10 href="#"
-              i.icon-comment
-              span.ml-5 10
-            a.ml-10 href="#"
-              i.icon-time
-            a.ml-10 href="#"
-              i.icon-flag
-        .item.clearfix
-          .wish-status.pull-left
-            a: i.icon-check-empty   
-          .wish-content.pull-left
-            a.palette.palette-silver.ml-10 href="#"
-              | 我想要买一个万代高达seed模型,我想要买一个万代高达seed模型...
-          .wish-info.pull-right
-            a.ml-10 href="#"
-              i.icon-shopping-cart
-            a.ml-10 href="#"
-              i.icon-picture            
-            a.ml-10 href="#"
-              i.icon-comment
-              span.ml-5 10
-            a.ml-10 href="#"
-              i.icon-time
-            a.ml-10 href="#"
-              i.icon-flag
-        .item.clearfix
-          .wish-status.pull-left
-            a: i.icon-check-empty   
-          .wish-content.pull-left
-            a.palette.palette-silver.ml-10 href="#"
-              | 我想要买一个万代高达seed模型,我想要买一个万代高达seed模型...
-          .wish-info.pull-right
-            a.ml-10 href="#"
-              i.icon-shopping-cart
-            a.ml-10 href="#"
-              i.icon-picture            
-            a.ml-10 href="#"
-              i.icon-comment
-              span.ml-5 10
-            a.ml-10 href="#"
-              i.icon-time
-            a.ml-10 href="#"
-              i.icon-flag
+            - if wish.current_wisher.present?
+              a href="#{user_path(wish.current_wisher)}"
+                img src="#{wish.current_wisher.avatar_url(:tiny)}" width="20"
+            - if wish.refer_link.present?
+              a.ml-10 href="#{wish_path(wish)}"
+                i.icon-shopping-cart
+            - if wish.photo.present?
+              a.ml-10 href="#{wish_path(wish)}"
+                i.icon-picture
+            - if true           
+              a.ml-10 href="#{wish_path(wish)}"
+                i.icon-comment
+                span.ml-5 10
+            - if wish.deadline.present?
+              a.ml-10 href="#{wish_path(wish)}"
+                i.icon-time
+            a.ml-10 href="#{wish_path(wish)}"
+              i class="#{icon(wish.status)}"
+
 

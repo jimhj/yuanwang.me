@@ -14,13 +14,13 @@
     ul.nav li.active a { color: #16a085; }
 
     .wish-items {
-      .palette { padding: 5px 2px; }
       .item {
         border-bottom: 1px solid #DDD;
         padding-bottom: 10px;
         margin-bottom: 10px;
         .wish-status { font-size: 30px; width: 30px; }
-        .wish-content, .wish-info { padding-top: 9px; }
+        .wish-content, .wish-info { padding-top: 4px; }
+        .wish-content a span { padding: 5px 5px; font-size: 16px; }
       }
     }
   }

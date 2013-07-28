@@ -22,4 +22,8 @@ class Wish < ActiveRecord::Base
     end
   end
 
+  def current_wisher
+    self.wishers.current.try(:user)
+  end
+
 end
