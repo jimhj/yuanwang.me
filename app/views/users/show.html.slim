@@ -48,10 +48,10 @@
                 = wish.content.truncate(40)
           .wish-info.pull-right
             - if wish.current_wisher.present?
-              a href="#{user_path(wish.current_wisher)}"
+              a href="#{user_path(wish.current_wisher)}" data-original-title="被 [#{wish.current_wisher.name}] 认领了" title="被 [#{wish.current_wisher.name}] 认领了" data-toggle="tooltip"
                 img src="#{wish.current_wisher.avatar_url(:tiny)}" width="20"
             - if wish.refer_link.present?
-              a.ml-10 href="#{wish_path(wish)}"
+              a.ml-10 data-original-title="#{wish.refer_link}" title="#{wish.refer_link}" data-toggle="tooltip" href="#{wish_path(wish)}"
                 i.icon-shopping-cart
             - if wish.photo.present?
               a.ml-10 href="#{wish_path(wish)}"
@@ -61,9 +61,9 @@
                 i.icon-comment
                 span.ml-5 10
             - if wish.deadline.present?
-              a.ml-10 href="#{wish_path(wish)}"
+              a.ml-10 data-original-title="截止 2012-12-31" title="截止 2012-12-31" data-toggle="tooltip" href="#{wish_path(wish)}"
                 i.icon-time
-            a.ml-10 href="#{wish_path(wish)}"
+            a.ml-10 href="#{wish_path(wish)}" data-original-title="#{text(wish.status)}" title="#{text(wish.status)}" data-toggle="tooltip"
               i class="#{icon(wish.status)}"
 
 

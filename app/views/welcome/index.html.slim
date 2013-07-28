@@ -10,9 +10,10 @@
             .avatar.pull-left
               a href="#{user_path(wish.user)}"
                 img src="#{wish.user.avatar_url(:tiny)}" width="30" height="30"     
-            .summary.pull-left.ml-5
-              a.palette.palette-turquoise href="#"
-                = wish.content
+            .summary.pull-left.ml-10
+              a href="#{wish_path(wish)}"
+                span.label class="label-#{color(wish.status)}"
+                  = wish.content
     .divider.pull-left.ml-10.mr-10
     .todo-list.pull-left
       .list-name.mb-10
@@ -24,6 +25,7 @@
             .avatar.pull-left
               a href="#{user_path(wish.user)}"
                 img src="#{wish.user.avatar_url(:tiny)}" width="30" height="30"     
-            .summary.pull-left.ml-5
-              a.palette.palette-silver href="#{wish_path(wish)}"
-                = wish.content
+            .summary.pull-left.ml-10
+              a href="#{wish_path(wish)}"
+                span.label class="label-#{color(wish.status)}"
+                  = wish.content

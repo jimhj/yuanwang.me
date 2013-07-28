@@ -7,3 +7,6 @@
 # = require bootstrap-transition
 # = require flat-ui/js/flatui-checkbox
 # = require flat-ui/js/flatui-radio
+
+$(document).ready ->
+  $("a[data-toggle=tooltip]").tooltip() 
