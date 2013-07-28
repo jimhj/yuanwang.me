@@ -11,4 +11,5 @@ WishList::Application.routes.draw do
   end
   resources :users
   get 'auth/weibo/callback' => 'auth#weibo_login', as: :weibo_login
+  get 'sign_out' => 'auth#sign_out', :as => :sign_out
 end

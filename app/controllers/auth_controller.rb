@@ -1,10 +1,18 @@
 # coding: utf-8
 class AuthController < ApplicationController
-  before_action :check_signed_in
+  before_action :check_signed_in, only: :weibo_login
+  before_action :require_login, only: :sign_out
 
   def weibo_login
     render_auth_login  
   end
+
+  def sign_out
+    clear_login_state
+    clear_sign_in_cookie
+
+    redirect_to root_path, warning: "您已登出"    
+  end  
 
   private
 

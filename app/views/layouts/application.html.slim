@@ -25,12 +25,14 @@ html
                 li: a href="#"
                   span.label 0
                 li.sign_out
-                  a href="#"
+                  a href="#{sign_out_path}"
                     i.icon-power-off
               - else
                 li: a href="/auth/weibo" 
                   i.icon-weibo
                   span.ml-5 登录
+    .container.clearfix
+      = render_notice_message    
     .main
       = yield
     .footer

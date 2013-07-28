@@ -16,8 +16,12 @@ class WishesController < ApplicationController
   end
 
   def create
-    @wish = current_user.wishes.create wish_params
-    redirect_to :back
+    @wish = current_user.wishes.build wish_params
+    if @wish.save
+      redirect_to wish_path(@wish), success: "刚刚成功的许下了心愿"
+    else
+      redirect_to :back, alert: @wish.errors.full_message.first
+    end
   end
 
   def upload
@@ -28,8 +32,13 @@ class WishesController < ApplicationController
 
   def grant
     @wish = Wish.find params[:id]
-    @wish.wishers.create(user_id: current_user.id, current: true)
-    redirect_to :back, notice: "认领了#{@wish.user.name}的愿望"
+    if @wish.user == current_user
+      message = { error: "不能认领自己的愿望" }
+    else
+      @wish.wishers.create(user_id: current_user.id, current: true)
+      message = { notice: "刚刚认领了 #{@wish.user.name} 的愿望" }
+    end
+    redirect_to :back, message
   end
 
   def edit

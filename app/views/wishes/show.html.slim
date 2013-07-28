@@ -21,7 +21,7 @@
               img src="#{@wisher.avatar_url(:small)}"
         .name.mt-5
           = grant @wish, :class => 'label' do
-            = @wish.pending? ? "等待认领" : @wisher.name
+            = @wish.pending? ? "点击认领" : @wisher.name
 
     .wish-detail.pull-left
       .wish-status.clearfix
