@@ -1,13 +1,14 @@
 # coding: utf-8
 class WishesController < ApplicationController
-  before_action :require_login
+  before_action :require_login, except: [:index, :show]
 
   def index
     
   end
 
   def show
-    
+    @wish = Wish.find params[:id]
+    @wisher = @wish.wishers.current.try(:user)
   end
 
   def new
@@ -23,6 +24,12 @@ class WishesController < ApplicationController
     wish = Wish.new
     wish.photo = params[:upload]
     render :text => { preview: wish.photo_url(:small), photo: wish.photo }.to_json
+  end
+
+  def grant
+    @wish = Wish.find params[:id]
+    @wish.wishers.create(user_id: current_user.id, current: true)
+    redirect_to :back, notice: "认领了#{@wish.user.name}的愿望"
   end
 
   def edit

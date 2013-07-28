@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20130726132822) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "wishers", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "wish_id"
-    t.boolean  "current",    default: true
+    t.string   "user_id",    limit: 8,                null: false
+    t.string   "wish_id",    limit: 8,                null: false
+    t.boolean  "current",              default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,15 +42,15 @@ ActiveRecord::Schema.define(version: 20130726132822) do
   add_index "wishers", ["wish_id"], name: "index_wishers_on_wish_id", using: :btree
 
   create_table "wishes", id: false, force: true do |t|
-    t.string   "id",            limit: 8,              null: false
-    t.text     "content",                              null: false
+    t.string   "id",            limit: 8,                      null: false
+    t.text     "content",                                      null: false
     t.string   "photo"
     t.string   "refer_link"
     t.datetime "deadline"
-    t.string   "status",        limit: 80
+    t.string   "status",        limit: 80, default: "PENDING"
     t.string   "achiever_id",   limit: 8
     t.integer  "wishers_count",            default: 0
-    t.integer  "user_id"
+    t.string   "user_id",       limit: 8,                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -9,7 +9,7 @@ class CreateWishes < ActiveRecord::Migration
       t.string :status, limit: 80, default: "PENDING"
       t.column :achiever_id, "char(8)"
       t.integer :wishers_count, default: 0      
-      t.references :user
+      t.column :user_id, "char(8)", null: false
       t.timestamps
     end
 

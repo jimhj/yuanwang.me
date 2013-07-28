@@ -2,4 +2,12 @@
 class Wisher < ActiveRecord::Base
   belongs_to :user
   belongs_to :wish, counter_cache: true
+
+  after_create do
+    self.wish.update_attribute :status, "LOCKED"
+  end
+
+  def self.current
+    where(current: true).first
+  end
 end

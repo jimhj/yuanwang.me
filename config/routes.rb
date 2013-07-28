@@ -4,6 +4,10 @@ WishList::Application.routes.draw do
     collection do
       post :upload
     end
+
+    member do
+      post :grant
+    end
   end
   resources :users
   get 'auth/weibo/callback' => 'auth#weibo_login', as: :weibo_login

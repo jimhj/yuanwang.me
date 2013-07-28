@@ -47,11 +47,15 @@
 }
 
 .wishes .wish .user {
+  a { text-decoration: none; }
   .from, .to { text-align: right; }
   .arrow { 
     padding-left: 160px;
     font-size: 50px;
-    i { color: #27AE60; }
+    &.pending i { color: #999999; }
+    &.locked i { color: #F89406; }
+    &.granted i { color: #468847; }
+    &.failed i { color: #B94A48; }
   }
 }
 

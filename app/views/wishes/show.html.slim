@@ -3,39 +3,36 @@
   = javascript_include_tag 'wishes'
 .wishes.container
   .wish.clearfix
-    .user.pull-left
+    .user.pull-left 
       .from.mb-10
         .avatar
-          a href="#"
-            img src="https://si0.twimg.com/profile_images/378800000004632125/a93416711002fa350706bdb4b5a37827_normal.jpeg"
-        .name
-          a href="#" Thomas David
-      .arrow.mb-10
+          a href="#{user_path(@wish.user)}"
+            img src="#{@wish.user.avatar_url(:small)}"
+        .name.mt-5
+          a.label href="#{user_path(@wish.user)}"= @wish.user.name
+      .arrow.mb-10 class="#{@wish.status.downcase}"
         i.icon-long-arrow-up          
       .to
         .avatar
-          a href="#"
-            img src="https://si0.twimg.com/profile_images/378800000004632125/a93416711002fa350706bdb4b5a37827_normal.jpeg"
-        .name
-          a href="#" Thomas David
+          = grant @wish do
+            - if @wish.pending? 
+              = image_tag "avatar/small.jpg"
+            - else
+              img src="#{@wisher.avatar_url(:small)}"
+        .name.mt-5
+          = grant @wish, :class => 'label' do
+            = @wish.pending? ? "等待认领" : @wisher.name
 
     .wish-detail.pull-left
       .wish-status.clearfix
         .pull-right
-          span.label.label-success.label-block
-            i.icon-ok-sign
-            span.ml-5 愿望达成
-          a.label.label-important.label-block
-            i.icon-exclamation-sign
-            span.ml-5 确认愿望达成   
+          = wish_status_tag(@wish)   
       .detail.mt-20
         .content 
-          | 我希望每一个冬天里，连大街上都有暖气，我就不用穿很厚，那样不帅，但你要穿得很厚；
-          | 我希望每一个冬天里，连大街上都有暖气，我就不用穿很厚，那样不帅，但你要穿得很厚；
-          | 我希望每一个冬天里，连大街上都有暖气，我就不用穿很厚，那样不帅，但你要穿得很厚。
+          = @wish.content
         .photo.mb-20.mt-20
-          a href="#"
-            img src="http://mmbb.qiniudn.com/photo/1373288604/9ca2985e.jpeg!normal2" width="500" height="500"
+          a href="#{@wish.photo_url}" target="_blank"
+            img src="#{@wish.photo_url(:normal)}"
         .tools.clearfix 
           .pull-right
             p
