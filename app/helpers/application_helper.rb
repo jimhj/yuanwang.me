@@ -61,7 +61,7 @@ module ApplicationHelper
         yield
       end
     else
-      link_to "#{user_path(wish.wishers.current.user_id)}", opts do
+      link_to "#{user_path(wish.current_wisher.id)}", opts do
         yield
       end
     end

@@ -23,7 +23,7 @@ class Wish < ActiveRecord::Base
   end
 
   def current_wisher
-    self.wishers.current.try(:user)
+    self.wishers.where(current: true).first.try(:user)
   end
 
 end

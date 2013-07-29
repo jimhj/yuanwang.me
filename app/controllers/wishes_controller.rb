@@ -8,8 +8,7 @@ class WishesController < ApplicationController
 
   def show
     @wish = Wish.find params[:id]
-    p @wish
-    @wisher = @wish.wishers.current.try(:user)
+    @wisher = @wish.current_wisher
   end
 
   def new
