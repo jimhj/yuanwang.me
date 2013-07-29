@@ -11,28 +11,28 @@
         a.ml-10 href="http://weibo.com/u/#{@user.weibo_uid}" target="_blank": i.icon-weibo
       p
         i.icon-gift
-        a.ml-10 href="#" 32
+        a.ml-10 href="#this" 32
+      p
+        i.icon-heart
+        a.ml-10 href="#this" 32        
       p
         small Right here waiting...
   .wish-list.mt-20
     ul.nav.nav-tabs
-      li
-        a href="#"
+      li class="#{params[:list].blank? ? 'active' : nil}"
+        a href="#{user_path(@user)}"
           i.icon-gift
           span.ml-5 所有
-      li.done
-        a href="#"
-          i.icon-check
-          span.ml-5 已完成            
-      li.active.to_be_done
-        a href="#"
-          i.icon-flag
-          span.ml-5 已认领
-      li.starting
-        a href="#"
-          i.icon-flag-alt
-          span.ml-5 未认领
-                    
+
+      - %w(PENDING LOCKED GRANTED FAILED).each do |status|
+        li class="#{(params[:list] || '').upcase == status ? 'active' : nil}"
+          a href="#{user_path(@user, list: status.downcase)}"
+            i class="#{icon(status)}"
+            span.ml-5= text(status)
+      li class="#{params[:list] == 'grant' ? 'active' : nil}"
+        a href="#{user_path(@user, list: 'grant')}"
+          i.icon-heart
+          span.ml-5 认领的                    
     .wish-items
       - @wishes.each do |wish|
         .item.clearfix

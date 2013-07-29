@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar
 
   has_many :wishes
+  has_many :wishers
   has_many :received_notifications, class_name: "Notification::Base", foreign_key: "to_user_id"
 
   def self.build_via_weibo(auth)
@@ -28,4 +29,15 @@ class User < ActiveRecord::Base
   def unread_notifies_count
     self.received_notifications.where(readed: false).count
   end
+
+  def grant_wishes
+    Wish.where(id: self.wishers.map(&:wish_id))
+  end
+
+  def read_notifications(notifications)
+    unread_ids = notifications.where(readed: false).pluck(:id)
+    if unread_ids.any?
+      Notification::Base.where({ id: unread_ids, readed: false }).update_all(readed: true)
+    end    
+  end  
 end

@@ -2,6 +2,12 @@
 class UsersController < ApplicationController
   def show
     @user =  User.find params[:id]
-    @wishes = @user.wishes.includes('wishers').order('created_at DESC')
+    if params[:list] == 'grant'
+      @wishes = @user.grant_wishes.includes('wishers')
+    else
+      @wishes = @user.wishes.includes('wishers')
+      @wishes = @wishes.send(params[:list]) unless params[:list].blank?
+    end     
+    @wishes = @wishes.order('created_at DESC')
   end  
 end

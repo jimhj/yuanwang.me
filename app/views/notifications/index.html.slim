@@ -1,0 +1,16 @@
+- content_for :head do
+  = stylesheet_link_tag 'notifications'
+
+.notifications.container
+  .toolbar.clearfix
+    .pull-left
+      a.label.label-success
+        i.icon-envelope
+        span.ml-5 收到的消息
+    .pull-left.ml-20
+      a.label.label-important href="#"
+        i.icon-trash
+        span.ml-5 清空消息列表
+  .notify-items.mt-30
+    - @notifications.each do |notification|
+        = render partial: "notifications/#{notification.type.underscore}", locals: { notification: notification }

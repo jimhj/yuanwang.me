@@ -13,8 +13,10 @@ class Wish < ActiveRecord::Base
 
   validates_inclusion_of :status, :in => %w(PENDING LOCKED GRANTED FAILED)
 
-  scope :granteds, -> { where(status: "GRANTED").includes(:user) }
-  scope :pendings, -> { where(status: "PENDING").includes(:user) }
+  scope :granted, -> { where(status: "GRANTED").includes(:user) }
+  scope :pending, -> { where(status: "PENDING").includes(:user) }
+  scope :locked, -> { where(status: "LOCKED").includes(:user) }
+  scope :failed, -> { where(status: "FAILED").includes(:user) }
 
   %w(PENDING LOCKED GRANTED FAILED).each do |status|
     define_method :"#{status.downcase}?" do
