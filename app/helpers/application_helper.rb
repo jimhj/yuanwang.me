@@ -66,4 +66,11 @@ module ApplicationHelper
       end
     end
   end
+
+  def render_notify_label
+    unread_count = current_user.unread_notifies_count
+    klass = "label"
+    klass << " label-important" unless unread_count.zero?
+    content_tag 'span', current_user.unread_notifies_count, :class => klass
+  end
 end

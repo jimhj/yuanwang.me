@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar
 
   has_many :wishes
+  has_many :received_notifications, class_name: "Notification::Base", foreign_key: "to_user_id"
 
   def self.build_via_weibo(auth)
     user = User.new
@@ -22,5 +23,9 @@ class User < ActiveRecord::Base
     user.weibo_uid = auth['weibo_uid']
     user.weibo_token = auth['weibo_token']
     user   
-  end  
+  end
+
+  def unread_notifies_count
+    self.received_notifications.where(readed: false).count
+  end
 end

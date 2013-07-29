@@ -12,7 +12,7 @@ html
         .navbar-inner
           .pull-left
             .nav-collapse.collapse
-              a.brand href="#" WishListLogo
+              a.brand href="#{root_path}" WishListLogo
               ul.nav
                 li.active: a href="#{root_path}" 随便看看
           .pull-right
@@ -22,8 +22,8 @@ html
                 span.ml-5 许一个愿望
               - if signed_in?            
                 li: a href="#{user_path(current_user)}"= current_user.name
-                li: a href="#"
-                  span.label 0
+                li: a href="#{notifications_path}"
+                  = render_notify_label
                 li.sign_out
                   a href="#{sign_out_path}"
                     i.icon-power-off
