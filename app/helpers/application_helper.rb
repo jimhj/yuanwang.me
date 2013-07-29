@@ -49,7 +49,7 @@ module ApplicationHelper
     content_tag 'span', :class => "label label-#{color(wish.status)} label-block" do
       sub_tags = []
       sub_tags << content_tag('i', nil, :class => "#{icon(wish.status)}")
-      sub_tags << content_tag('span', :class => 'ml-5') { text(wish.status) }
+      sub_tags << content_tag('span', text(wish.status), :class => 'ml-5')
       sub_tags.join.html_safe
     end
   end
