@@ -76,5 +76,9 @@ module ApplicationHelper
 
   def format_link(refer_link)
     link = refer_link[/^https?:\/\//] ? refer_link : "http://" + refer_link
-  end  
+  end
+
+  def confirmable?(wish)
+    wish.user == current_user && wish.locked?
+  end
 end

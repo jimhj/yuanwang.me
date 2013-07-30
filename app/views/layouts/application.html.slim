@@ -14,9 +14,10 @@ html
             .nav-collapse.collapse
               a.brand href="#{root_path}" WishListLogo
               ul.nav
-                li.active: a href="#{root_path}" 已完成的
-                li: a href="#{root_path}" 已认领的
-                li: a href="#{root_path}" 未认领的             
+                li class="#{params[:list].blank? ? 'active' : nil}": a href="#{root_path}" 所有
+                li class="#{params[:list] == 'granted' ? 'active' : nil}": a href="#{root_path(list: 'granted')}" 已完成的
+                li class="#{params[:list] == 'locked' ? 'active' : nil}": a href="#{root_path(list: 'locked')}" 已认领的
+                li class="#{params[:list] == 'pending' ? 'active' : nil}": a href="#{root_path(list: 'pending')}" 未认领的             
           .pull-right
             ul.nav
               li: a href="#{new_wish_path}" 

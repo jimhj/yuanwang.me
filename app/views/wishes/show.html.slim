@@ -26,11 +26,11 @@
             = @wish.pending? ? "点击认领#{@wish.user.name}的愿望" : @wisher.name
 
     .wish-detail
-      - if @wish.confirmable?
+      - if confirmable?(@wish)
         .confirm.mt-20.mb-20
           a.btn.btn-info.btn-large.btn-block href="#{confirm_grant_wish_path(@wish)}" data-method="POST"
             i.icon-ok
-            span.ml-5 点此确认 『#{@wish.current_wisher.name}』 实现你的愿望
+            span.ml-5 点此确认 『#{@wish.current_wisher.name}』 实现你了的愿望
       .detail.mt-20
         .content 
           = @wish.content
@@ -46,7 +46,9 @@
             - if @wish.deadline.present?
               p
                 i.icon-time
-                spam.ml-5 剩余 365 天
+                span.ml-5 希望在
+                spam.label.ml-5= @wish.deadline.strftime('%F %T')
+                span.ml-5 前实现
 
       .comment
         = render "shared/duoshuo"                

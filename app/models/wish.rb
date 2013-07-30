@@ -28,10 +28,6 @@ class Wish < ActiveRecord::Base
     self.wishers.where(current: true).first.try(:user)
   end
 
-  def confirmable?
-    self.locked?
-  end
-
   after_update do
     return unless self.changed.include?('status')
     case self.status
