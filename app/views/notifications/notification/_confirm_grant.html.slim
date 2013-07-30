@@ -1,0 +1,17 @@
+.item.clearfix
+  .pull-left.clearfix
+    .status.pull-left class="#{notification.readed? ? "readed" : nil}"
+      i.icon-circle
+
+    .content.pull-left.ml-10        
+      a href="#{user_path(notification.user)}"= notification.user.name
+      span.ml-10 确认了你完成了TA的愿望
+      a.ml-10 href="#{wish_path(notification.wish)}"= notification.wish.content.truncate(30)
+  .pull-right.clearfix
+    .avatar.pull-left
+      a href="#{user_path(notification.user)}"
+        img src="#{notification.user.avatar_url(:tiny)}" width="20" 
+    .datetime.pull-left.ml-10
+      span.label= notification.created_at.strftime('%F %T')           
+    .delete.pull-left.ml-10
+      a.label.label-important href="#{notification_path(notification)}" data-method="DELETE" 删除

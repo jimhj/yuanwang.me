@@ -36,9 +36,15 @@ class WishesController < ApplicationController
       message = { error: "不能认领自己的愿望" }
     else
       @wish.wishers.create(user_id: current_user.id, current: true)
-      message = { notice: "刚刚认领了 #{@wish.user.name} 的愿望" }
+      message = { success: "刚刚认领了 #{@wish.user.name} 的愿望，说到就要做到" }
     end
     redirect_to :back, message
+  end
+
+  def confirm_grant
+    @wish = Wish.find params[:id]
+    @wish.update_attribute(:status, "GRANTED")
+    redirect_to :back, success: "恭喜你实现了这个愿望"
   end
 
   def edit

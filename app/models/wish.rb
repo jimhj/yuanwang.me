@@ -28,4 +28,38 @@ class Wish < ActiveRecord::Base
     self.wishers.where(current: true).first.try(:user)
   end
 
+  def confirmable?
+    self.locked?
+  end
+
+  after_update do
+    return unless self.changed.include?('status')
+    case self.status
+    when "LOCKED"
+      self.delay(queue: "send_grant_notification", priority: 20)
+          .send_grant_notification
+    when "GRANTED"
+      self.delay(queue: "send_confirm_granted_notification", priority: 20)
+          .send_confirm_granted_notification
+    end
+  end
+
+  def send_grant_notification
+    return if user_id == current_wisher.id
+    notify = Notification::Grant.new
+    notify.user_id = current_wisher.id
+    notify.to_user_id = self.user_id
+    notify.model_id = self.id
+    notify.save
+  end
+
+  def send_confirm_granted_notification
+    return if user_id == current_wisher.id
+    notify = Notification::ConfirmGrant.new
+    notify.user_id = self.user_id
+    notify.to_user_id = current_wisher.id
+    notify.model_id = self.id
+    notify.save
+  end
+
 end

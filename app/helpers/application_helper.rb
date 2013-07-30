@@ -73,4 +73,8 @@ module ApplicationHelper
     klass << " label-important" unless unread_count.zero?
     content_tag 'span', current_user.unread_notifies_count, :class => klass
   end
+
+  def format_link(refer_link)
+    link = refer_link[/^https?:\/\//] ? refer_link : "http://" + refer_link
+  end  
 end

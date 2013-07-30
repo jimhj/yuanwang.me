@@ -7,6 +7,7 @@ WishList::Application.routes.draw do
 
     member do
       post :grant
+      post :confirm_grant
     end
   end
   resources :users

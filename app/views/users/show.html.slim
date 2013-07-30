@@ -15,8 +15,8 @@
       p
         i.icon-heart
         a.ml-10= @user.grant_wishes.count      
-      p
-        small Right here waiting...
+      / p
+      /   small Right here waiting...
   .wish-list.mt-20
     ul.nav.nav-tabs
       li class="#{params[:list].blank? ? 'active' : nil}"

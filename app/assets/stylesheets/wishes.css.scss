@@ -30,12 +30,9 @@
 
 .wishes .wish {
   .user { 
-    width: 20%;
-    padding-right: 10px;
+    border-bottom: 1px solid #DDD;
   }
   .wish-detail {
-    width: 70%;
-    border-left: 1px solid #DDD;
     min-height: 600px;
     padding: 0 10px;
   }
@@ -47,25 +44,25 @@
 }
 
 .wishes .wish .user {
+  padding-bottom: 10px;
   a { text-decoration: none; }
   .from, .to { text-align: right; }
-  .arrow { 
-    padding-left: 160px;
-    font-size: 50px;
-    &.pending i { color: #999999; }
-    &.locked i { color: #F89406; }
-    &.granted i { color: #468847; }
-    &.failed i { color: #B94A48; }
+  .wish-status {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
   }
+  .wish-status span, .wish-status a {
+    text-decoration: none;
+    font-size: 14px; 
+    // padding: 5px 5px;
+  }  
 }
 
 .wishes .wish .wish-detail {
-  .wish-status span, .wish-status a {
-    text-decoration: none;
-    font-size: 20px; 
-    padding: 5px 5px;
-  }
 
+  .confirm {}
+  
   .detail {
     .content {
       text-indent: 2em;

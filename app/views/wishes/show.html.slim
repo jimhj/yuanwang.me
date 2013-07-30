@@ -2,31 +2,35 @@
   = stylesheet_link_tag 'wishes'
   = javascript_include_tag 'wishes'
 .wishes.container
-  .wish.clearfix
-    .user.pull-left 
-      .from.mb-10
-        .avatar
+  .wish
+    .user.clearfix
+      .from.pull-left.clearfix
+        .avatar.pull-left
           a href="#{user_path(@wish.user)}"
-            img src="#{@wish.user.avatar_url(:small)}"
-        .name.mt-5
-          a.label href="#{user_path(@wish.user)}"= @wish.user.name
-      .arrow.mb-10 class="#{@wish.status.downcase}"
-        i.icon-long-arrow-up          
-      .to
-        .avatar
+            img src="#{@wish.user.avatar_url(:tiny)}"
+        .name.ml-5.pull-left
+          a href="#{user_path(@wish.user)}"= @wish.user.name
+
+      .wish-status.pull-left
+        = wish_status_tag(@wish)  
+       
+      .to.pull-right.clearfix
+        .avatar.pull-left
           = grant @wish do
             - if @wish.pending? 
-              = image_tag "avatar/small.jpg"
+              = image_tag "avatar/tiny.jpg"
             - else
-              img src="#{@wisher.avatar_url(:small)}"
-        .name.mt-5
-          = grant @wish, :class => 'label' do
-            = @wish.pending? ? "点击认领" : @wisher.name
+              img src="#{@wisher.avatar_url(:tiny)}"
+        .name.ml-5.pull-left
+          = grant @wish do
+            = @wish.pending? ? "点击认领#{@wish.user.name}的愿望" : @wisher.name
 
-    .wish-detail.pull-left
-      .wish-status.clearfix
-        .pull-right
-          = wish_status_tag(@wish)   
+    .wish-detail
+      - if @wish.confirmable?
+        .confirm.mt-20.mb-20
+          a.btn.btn-info.btn-large.btn-block href="#{confirm_grant_wish_path(@wish)}" data-method="POST"
+            i.icon-ok
+            span.ml-5 点此确认 『#{@wish.current_wisher.name}』 实现你的愿望
       .detail.mt-20
         .content 
           = @wish.content
@@ -35,12 +39,14 @@
             img src="#{@wish.photo_url(:normal)}"
         .tools.clearfix 
           .pull-right
-            p
-              i.icon-shopping-cart
-              a.ml-5 href="#" http://www.baidu.com/
-            p
-              i.icon-time
-              spam.ml-5 剩余 365 天
+            - if @wish.refer_link.present?
+              p
+                i.icon-shopping-cart
+                a.ml-5 href="#{format_link @wish.refer_link}" target="_blank"= @wish.refer_link
+            - if @wish.deadline.present?
+              p
+                i.icon-time
+                spam.ml-5 剩余 365 天
 
       .comment
-        / = render "shared/duoshuo"                
+        = render "shared/duoshuo"                
