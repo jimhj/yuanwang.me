@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_secure_password
   mount_uploader :avatar
 
-  has_many :wishes
+  has_many :wishes, -> { order('created_at DESC') }
   has_many :wishers
   has_many :received_notifications, class_name: "Notification::Base", foreign_key: "to_user_id"
 

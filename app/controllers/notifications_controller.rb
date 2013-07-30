@@ -8,6 +8,9 @@ class NotificationsController < ApplicationController
   end
 
   def destroy
+    notification = Notification::Base.find params[:id]
+    notification.destroy
+    redirect_to :back, warning: "消息已被删除"
   end
 
   private

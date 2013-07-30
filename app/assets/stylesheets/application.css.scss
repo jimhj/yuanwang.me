@@ -28,21 +28,26 @@ i.icon-weibo { color: #C0392B; }
 }
 
 .index-home {
-  width: 1024px;
+  width: 960px;
   a { text-decoration: none; }
-  .random-recommand { margin: 0 auto; }
-  .list .summary { padding-top: 3px; }
-  .list .summary a span { padding: 5px 5px; font-size: 16px; }
-  .list-name { font-size: 40px; text-align: center; }
-  .done-list {
-    width: 46%;
+  .wishes {}
+  .wishes .wish-item {
+    background: #FFF;
+    width: 300px;
   }
-  .divider {
-    min-height: 900px;
-    background: #DDD;
-    width: 1px; 
+
+  .wishes .wish-item .wish-list {
+    padding: 10px 10px;
+    a { font-size: 14px; }
+    ul li a {
+      padding: 5px 5px;
+    }
   }
-  .todo-list {
-    width: 46%;
+
+  .wishes .wish-item .user {
+    padding: 10px 10px;
+    background: #F8F8F8;
+    border-bottom: 1px solid #EEE;
+    .summary { width: 84%; }
   }
 }

@@ -1,31 +1,35 @@
+- content_for :head do
+  = javascript_include_tag 'masonry.pkgd.min'
+
 .index-home.container
   .wishes
-    .done-list.pull-left.clearfix
-      .list-name.mb-10
-        a href="#"
-          i.icon-check
-      .list
-        - @granteds.each do |wish|
-          .list-item.clearfix.mb-10
-            .avatar.pull-left
-              a href="#{user_path(wish.user)}"
-                img src="#{wish.user.avatar_url(:tiny)}" width="30" height="30"     
-            .summary.pull-left.ml-10
-              a href="#{wish_path(wish)}"
-                span.label class="label-#{color(wish.status)}"
-                  = wish.content
-    .divider.pull-left.ml-10.mr-10
-    .todo-list.pull-left
-      .list-name.mb-10
-        a href="#"
-          i.icon-check-empty
-      .list
-        - @pendings.each do |wish|
-          .list-item.clearfix.mb-10
-            .avatar.pull-left
-              a href="#{user_path(wish.user)}"
-                img src="#{wish.user.avatar_url(:tiny)}" width="30" height="30"     
-            .summary.pull-left.ml-10
-              a href="#{wish_path(wish)}"
-                span.label class="label-#{color(wish.status)}"
-                  = wish.content
+    - @users.each do |user|
+      .wish-item.mb-30
+        .user.clearfix
+          .avatar.pull-left
+            a href="#{user_path(user)}"
+              img src="#{user.avatar_url(:tiny)}"
+          .summary.pull-left.ml-10.clearfix
+            .pull-left
+              a href="#{user_path(user)}"= user.name
+            .pull-right
+              a href="#"
+                i.icon-share
+        .wish-list
+          ul.unstyled
+            - user.wishes.each do |wish|
+              li.mb-10
+                a.label class="label-#{color(wish.status)}" href="#{wish_path(wish)}"
+                  i class="#{wish.granted? ? 'icon-check' : 'icon-check-empty'}"
+                  span.ml-5= wish.content.truncate(30)
+javascript:
+  $(function () {
+    var $container = $('.wishes');
+    // initialize
+    $container.masonry({
+      columnWidth: 320,
+      itemSelector: '.wish-item'
+    });  
+  });
+
+
