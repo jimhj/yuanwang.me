@@ -21,7 +21,7 @@
               li.mb-10
                 a.label class="label-#{color(wish.status)}" href="#{wish_path(wish)}"
                   i class="#{wish.granted? ? 'icon-check' : 'icon-check-empty'}"
-                  span.ml-5= wish.content.truncate(25)
+                  span.ml-5= wish.content.truncate(20)
 javascript:
   $(function () {
     var $container = $('.wishes');

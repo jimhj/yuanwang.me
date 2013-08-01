@@ -13,7 +13,7 @@ html
           .pull-left
             .nav-collapse.collapse
               a.brand href="#{root_path}" 
-                = image_tag 'logo.jpg', size: "100x30"
+                = image_tag 'logo.png'
               ul.nav
                 li class="#{params[:list].blank? ? 'active' : nil}": a href="#{root_path}" 所有
                 li class="#{params[:list] == 'granted' ? 'active' : nil}": a href="#{root_path(list: 'granted')}" 已完成的
