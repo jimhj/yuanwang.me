@@ -20,5 +20,5 @@ test:
 
 production:
   <<: *defaults
-  site_url: "http://www.wakmj.com/"
-  weibo_callback_url: "http://www.wakmj.com/auth/weibo/callback"
+  site_url: "http://www.yuanwang.me/"
+  weibo_callback_url: "http://www.yuanwang.me/auth/weibo/callback"
