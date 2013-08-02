@@ -25,7 +25,9 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'capistrano', require: false
+  gem 'rvm-capistrano', require: false  
   gem 'thin'
   gem 'rspec-rails', '~> 2.0'
-  gem 'factory_girl_rails'  
+  gem 'factory_girl_rails'
 end
