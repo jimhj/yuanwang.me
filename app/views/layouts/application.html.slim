@@ -6,6 +6,7 @@ html
     = javascript_include_tag "application"
     = yield :head
     = csrf_meta_tags
+    = favicon_link_tag "favicon.ico"
   body
     .header
       .navbar.navbar-inverse.navbar-static-top
@@ -39,4 +40,5 @@ html
       = render_notice_message    
     .main
       = yield
-    .footer
+    .footer.container
+      span Powered By jimmy.huangjin@gmail.com

@@ -12,7 +12,9 @@ class WishesController < ApplicationController
   end
 
   def new
+    require 'number_to_cn'
     @wish = current_user.wishes.new
+    @current_count = (current_user.wishes_count + 1).to_cn_words
   end
 
   def create

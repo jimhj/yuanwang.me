@@ -81,4 +81,11 @@ module ApplicationHelper
   def confirmable?(wish)
     wish.user == current_user && wish.locked?
   end
+
+  def share_to_weibo(user)
+    title = %Q(@#{user.name} 许了#{user.wishes_count}个愿望，来一起帮助TA实现吧！)
+    pic = user.avatar_url
+    url = user_url(user)
+    %Q(http://service.weibo.com/share/share.php?&url=#{url}&title=#{title}&pic=#{pic})
+  end  
 end

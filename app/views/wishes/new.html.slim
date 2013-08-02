@@ -6,7 +6,7 @@
   .new-wish
     h1 
       i.icon-gift
-      span.ml-5 许下我的第 一千零一个 愿望
+      span.ml-5 许下我的第 #{@current_count} 个愿望
     = form_for @wish, html: { :class => "form-horizontal" } do |f|
       .control-group        
         .controls

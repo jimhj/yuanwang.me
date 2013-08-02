@@ -13,7 +13,7 @@
             .pull-left
               a href="#{user_path(user)}"= user.name
             .pull-right
-              a href="#"
+              a href="#{share_to_weibo(user)}" data-toggle="tooltip" data-title="分享#{user.name}的愿望到新浪微博"
                 i.icon-share
         .wish-list
           ul.unstyled
