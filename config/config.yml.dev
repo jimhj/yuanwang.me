@@ -1,7 +1,7 @@
 defaults: &defaults
   app_name: "愿望清单"
-  weibo_key: 146154564
-  weibo_secret: 6bb9ba83bdbb38ecff074d155a27d6c0
+  weibo_key: 91921072
+  weibo_secret: a7706f48c5d40c241724b0be356c26bd
   qiniu_key: fuJv0PW2x8JV71VZzwBo6VPNe2f5HRFrWpApdEYQ
   qiniu_token: DSEnyT8JlbVHhoZhE3tdS8DdFZtbRuj45ZXU6kNn
   qiniu_bucket: wishlist
