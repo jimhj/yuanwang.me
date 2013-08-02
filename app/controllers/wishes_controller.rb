@@ -1,6 +1,6 @@
 # coding: utf-8
 class WishesController < ApplicationController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login, except: [:index, :show, :duoshuo_comments]
 
   def index
     
@@ -11,6 +11,19 @@ class WishesController < ApplicationController
     @wisher = @wish.current_wisher
     set_seo_meta("#{@wish.user.name}的愿望", "#{@wish.content}", "#{@wish.content}")
   end
+
+  def duoshuo_comments
+    url = "http://api.duoshuo.com/threads/counts.json?short_name=yuanwang&threads=#{params[:wish_ids]}"
+    resp = begin 
+      req = Faraday.get url
+      MultiJson.load(req.body) 
+    rescue => e
+      {"response" => {}}
+    end
+    @ret = {}
+    resp["response"].each { |k, v| @ret[k] = v["comments"] }
+    render :text => @ret.to_json
+  end  
 
   def new
     require 'number_to_cn'

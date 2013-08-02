@@ -8,7 +8,8 @@ class UsersController < ApplicationController
       @wishes = @user.wishes.includes('wishers')
       @wishes = @wishes.send(params[:list]) unless params[:list].blank?
     end     
-    @wishes = @wishes.order('created_at DESC')
+    @wishes = @wishes.order('wishes.created_at DESC')
     set_seo_meta("#{@user.name}的愿望清单", "愿望清单", "愿望清单")
-  end  
+  end
+
 end

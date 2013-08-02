@@ -10,7 +10,7 @@ defaults: &defaults
 development:
   <<: *defaults
   site_url: "http://127.0.0.1:3000/"
-  weibo_callback_url: "http://www.wakmj.com:3000/auth/weibo/callback"
+  weibo_callback_url: "http://www.yuanwang.me:3000/auth/weibo/callback"
 
 test:
   <<: *defaults
