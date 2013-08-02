@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 html
   head
-    title WishList
+    = render_page_title
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
     = yield :head
     = csrf_meta_tags
+    meta name='keywords' content="#{@keywords}"
+    meta name='description' content="#{@description}"    
     = favicon_link_tag "favicon.ico"
   body
     .header

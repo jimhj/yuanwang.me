@@ -58,4 +58,12 @@ class ApplicationController < ActionController::Base
     session.clear
   end
 
+  def set_seo_meta(title = nil, meta_keywords = nil, meta_description = nil)
+    default_keywords = "愿望清单"
+    default_description = %Q(愿望清单)
+    @page_title = "#{title}" if title.present?      
+    @keywords = meta_keywords || default_keywords
+    @description = meta_description || default_description
+  end  
+
 end

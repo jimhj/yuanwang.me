@@ -1,6 +1,12 @@
 # coding: utf-8
 module ApplicationHelper
-  
+
+  def render_page_title
+    default_title = "愿望清单"
+    title = @page_title ? "#{@page_title} | #{default_title}" : default_title rescue "愿望清单"
+    content_tag("title", title, nil, false)
+  end
+
   def render_notice_message
     flash_messages = []
 

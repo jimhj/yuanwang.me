@@ -9,6 +9,7 @@ class WishesController < ApplicationController
   def show
     @wish = Wish.find params[:id]
     @wisher = @wish.current_wisher
+    set_seo_meta("#{@wish.user.name}的愿望", "#{@wish.content}", "#{@wish.content}")
   end
 
   def new

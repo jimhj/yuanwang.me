@@ -9,5 +9,6 @@ class UsersController < ApplicationController
       @wishes = @wishes.send(params[:list]) unless params[:list].blank?
     end     
     @wishes = @wishes.order('created_at DESC')
+    set_seo_meta("#{@user.name}的愿望清单", "愿望清单", "愿望清单")
   end  
 end
