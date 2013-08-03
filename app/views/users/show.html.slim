@@ -58,12 +58,20 @@
                 i.icon-picture
             - if true           
               a.ml-10 href="#{wish_path(wish)}"
-                i.icon-comment
-                span.ml-5 10
+                i.icon-comment 
+                span.ml-5 class="comment_#{wish.id}" ...
             - if wish.deadline.present?
               a.ml-10 data-original-title="截止 #{wish.deadline.strftime('%F')}" title="截止 #{wish.deadline.strftime('%F')}" data-toggle="tooltip" href="#{wish_path(wish)}"
                 i.icon-time
             a.ml-10 href="#{wish_path(wish)}" data-original-title="#{text(wish.status)}" title="#{text(wish.status)}" data-toggle="tooltip"
               i class="#{icon(wish.status)}"
-
-
+javascript:
+  $(function () {
+    var wish_ids = "#{@wishes.map(&:id).join(',')}";
+    var url = "/wishes/duoshuo_comments/";
+    $.get(url, {wish_ids: wish_ids}, function (res) {
+      $.each(res, function (i, val) {
+        $('.comment_'+i).text(val);
+      });
+    }, 'json');
+  });
