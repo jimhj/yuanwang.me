@@ -71,15 +71,23 @@ module QnUploader
         private
 
         def convert_to_tempfile(img_url)
-          extname = File.extname(img_url)
-          basename = File.basename(img_url, extname)
-          file = Tempfile.new([basename, extname])
-          file.binmode
-          open(URI.parse(img_url)) do |data|  
-            file.write data.read
+          res = Faraday.get img_url
+          content_type = res.headers['content-type']
+          img_type = case content_type
+            when 'image/gif'
+              '.gif'
+            when 'mage/png', 'image/xpng'
+              '.png'
+            when 'image/wbmp'
+              '.bmp'
+            when 'image/pjpeg', 'image/jpeg'
+              '.jpg'
           end
-          file.rewind    
-          file
+          file = Tempfile.new([Digest::MD5.hexdigest(img_url), img_type], :encoding => Encoding::BINARY)
+          res.body.force_encoding(Encoding::BINARY)
+          file.write res.body
+          file.close
+          file         
         end
 
       RUBY
