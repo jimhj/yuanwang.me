@@ -47,24 +47,24 @@ class Wish < ActiveRecord::Base
   end
 
   def sync_2_weibo
-    status = %Q(刚刚许了个心愿：『#{self.content.truncate(100)}』,谁能帮我？#{wish_url(self.id)})
+    str = "刚刚许了个心愿：『#{self.content.truncate(100)}』,谁能帮我？#{wish_url(self.id)}"
     opts = {
       :access_token => self.user.weibo_token,
-      :status => URI.encode(status)
+      :status => URI.encode(str)
     }
 
     if self.photo.blank?
-      conn = Faraday.new "https://api.weibo.com"
-      conn.post '/2/statuses/update.json', opts
+      pic_path = convert_to_tempfile(self.user.avatar_url).path
     else
       pic_path = convert_to_tempfile(self.photo_url).path
-      opts.merge!(:pic => Faraday::UploadIO.new(pic_path, 'image/jpeg'))
-      conn = Faraday.new(:url => "https://upload.api.weibo.com") do |faraday|
-        faraday.request :multipart
-        faraday.adapter :net_http
-      end
-      conn.post "/2/statuses/upload.json", opts
-    end     
+    end
+
+    opts.merge!(:pic => Faraday::UploadIO.new(pic_path, 'image/jpeg'))
+    conn = Faraday.new(:url => "https://upload.api.weibo.com") do |faraday|
+      faraday.request :multipart 
+      faraday.adapter :net_http
+    end
+    conn.post "/2/statuses/upload.json", opts         
   end
 
   def send_grant_notification
