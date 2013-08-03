@@ -53,22 +53,21 @@ class Wish < ActiveRecord::Base
       :status => URI.encode(status)
     }
 
-    if self.photo.present?
-      req_host = "https://upload.api.weibo.com"
-      req_path = "/2/statuses/upload.json"
+    if self.photo.blank?
+      Rails.logger.info 1111111111
+      conn = Faraday.new "https://api.weibo.com"
+      conn.post '/2/statuses/update.json', opts
+
+      Rails.logger.info conn
+    else
       pic_path = convert_to_tempfile(self.photo_url).path
       opts.merge!(:pic => Faraday::UploadIO.new(pic_path, 'image/jpeg'))
-    else
-      req_host = "https://api.weibo.com"
-      req_path = "/2/statuses/update.json"
-    end
-
-    conn = Faraday.new(:url => req_host) do |faraday|
-      faraday.request(:multipart) if self.photo.present?
-      faraday.adapter :net_http
-    end
-    
-    conn.post req_path, opts   
+      conn = Faraday.new(:url => "https://upload.api.weibo.com") do |faraday|
+        faraday.request :multipart
+        faraday.adapter :net_http
+      end
+      conn.post "/2/statuses/upload.json", opts
+    end     
   end
 
   def send_grant_notification
