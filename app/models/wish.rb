@@ -54,11 +54,8 @@ class Wish < ActiveRecord::Base
     }
 
     if self.photo.blank?
-      Rails.logger.info 1111111111
       conn = Faraday.new "https://api.weibo.com"
       conn.post '/2/statuses/update.json', opts
-
-      Rails.logger.info conn
     else
       pic_path = convert_to_tempfile(self.photo_url).path
       opts.merge!(:pic => Faraday::UploadIO.new(pic_path, 'image/jpeg'))
