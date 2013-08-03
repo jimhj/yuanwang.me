@@ -68,15 +68,13 @@ module QnUploader
           end
         end
 
-        private
-
         def convert_to_tempfile(img_url)
           res = Faraday.get img_url
           content_type = res.headers['content-type']
           img_type = case content_type
             when 'image/gif'
               '.gif'
-            when 'mage/png', 'image/xpng'
+            when 'image/png', 'image/xpng'
               '.png'
             when 'image/wbmp'
               '.bmp'

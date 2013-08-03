@@ -82,4 +82,5 @@ WishList::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  routes.default_url_options = { host: "www.yuanwang.me" }
 end

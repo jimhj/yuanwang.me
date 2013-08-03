@@ -2,6 +2,7 @@
 class Wish < ActiveRecord::Base
   include UUID
   include QnUploader
+  include Rails.application.routes.url_helpers
 
   validates_presence_of :content
 
@@ -28,6 +29,11 @@ class Wish < ActiveRecord::Base
     self.wishers.where(current: true).first.try(:user)
   end
 
+  after_create do
+    self.delay(queue: "sync_2_weibo", priority: 20)
+        .sync_2_weibo
+  end
+
   after_update do
     return unless self.changed.include?('status')
     case self.status
@@ -38,6 +44,20 @@ class Wish < ActiveRecord::Base
       self.delay(queue: "send_confirm_granted_notification", priority: 20)
           .send_confirm_granted_notification
     end
+  end
+
+  def sync_2_weibo
+    status = %Q(刚刚许了个心愿：『#{self.content.truncate(100)}』,谁能帮我？#{wish_url(self.id)})
+    pic_path = convert_to_tempfile(self.photo_url).path
+    conn = Faraday.new(:url => 'https://upload.api.weibo.com') do |faraday|
+      faraday.request :multipart
+      faraday.adapter :net_http
+    end
+    conn.post "/2/statuses/upload.json", {
+      :access_token => self.user.weibo_token,
+      :status => URI.encode(status),
+      :pic => Faraday::UploadIO.new(pic_path, 'image/jpeg')
+    }    
   end
 
   def send_grant_notification
@@ -56,6 +76,6 @@ class Wish < ActiveRecord::Base
     notify.to_user_id = current_wisher.id
     notify.model_id = self.id
     notify.save
-  end
+  end  
 
 end
