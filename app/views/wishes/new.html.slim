@@ -6,7 +6,7 @@
   .new-wish
     h1 
       i.icon-gift
-      span.ml-5 许下我的第 #{@current_count} 个愿望
+      span.ml-5 许下我的第『#{@current_count}』个愿望
     = form_for @wish, html: { :class => "form-horizontal" } do |f|
       .control-group        
         .controls
@@ -29,10 +29,10 @@
         .controls
           .input-prepend
             span.add-on: i.icon-time
-            = f.text_field :deadline, :class => "span3", :placeholder => "希望在指定时间之前实现"            
+            input#deadline.span3 type="date" name="deadline" placeholder="希望在指定时间之前实现"
 
       .control-group.mt-30 
         .controls
-          button.btn.btn-info.btn-block.btn-large
+          button.btn.btn-info.btn-large
             i.icon-ok
             span.ml-5 发布我的愿望                 

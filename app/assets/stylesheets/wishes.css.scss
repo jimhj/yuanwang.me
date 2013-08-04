@@ -2,6 +2,10 @@
  *= require jquery.fileupload-ui
 */
 
+.wishes {
+  min-height: 400px;  
+}
+
 .wishes .new-wish {
   h1 { 
     display: block;

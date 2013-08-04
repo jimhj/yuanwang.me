@@ -29,6 +29,7 @@ i.icon-weibo { color: #C0392B; }
 
 .index-home {
   width: 960px;
+  min-height: 400px;
   a { text-decoration: none; }
   .wishes {}
   .wishes .wish-item {
@@ -56,7 +57,9 @@ i.icon-weibo { color: #C0392B; }
   bottom: 50px;
   margin: 0 auto;
   color: #999;
-  text-shadow: 0 3px 0px #fff;
+  // text-shadow: 0 3px 0px #fff;
   text-align: center;
   margin-top: 100px;
+  a { color: #999; text-decoration: none; }
+  a:hover { color: #C0392B; }
 }

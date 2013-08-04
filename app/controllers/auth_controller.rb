@@ -41,10 +41,9 @@ class AuthController < ApplicationController
       user.save!
       user.update_attributes(last_sign_in_at: Time.now, last_sign_in_ip: request.remote_ip)
       self.current_user = user
-      redirect_to root_path, success: "授权注册成功"
+      redirect_to root_path, success: "授权注册成功，许个心愿吧"
     rescue => e
-      raise e
-      redirect_to root_path, alert: "授权注册失败"
+      redirect_to root_path, alert: "差一点就授权成功了, 请再试点登录试一下吧"
     end
   end
 
