@@ -8,7 +8,7 @@
         .user.clearfix
           .avatar.pull-left
             a href="#{user_path(user)}"
-              img src="#{user.avatar_url(:tiny)}"
+              img src="#{user.avatar_url(:tiny)}" width="30" height="30"
           .summary.pull-left.ml-10.clearfix
             .pull-left
               a href="#{user_path(user)}"= user.name
